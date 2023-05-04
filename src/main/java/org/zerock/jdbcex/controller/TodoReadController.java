@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "todoReadController", value = "/todo/read")
+
+// 2-4 (3.조회) TodoDTO를 JSP로 전달
+@WebServlet(name=" todoReadController", value = "/todo/read")
 @Log4j2
 public class TodoReadController extends HttpServlet {
 
@@ -21,18 +23,19 @@ public class TodoReadController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            Long tno = Long.parseLong(req.getParameter("tno"));
 
-            TodoDTO todoDTO = todoService.get(tno);
+        Long tno = Long.parseLong(req.getParameter("tno"));
 
-            //모델 담기
-            req.setAttribute("dto", todoDTO);
+        TodoDTO todoDTO = TodoService.INSTANCE.get(tno);
 
-            req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req, resp);
+        req.setAttribute("dto", todoDTO);
 
-        }catch(Exception e){
+        req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req, resp);
+
+        } catch (Exception e) {
             log.error(e.getMessage());
             throw new ServletException("read error");
         }
+
     }
 }

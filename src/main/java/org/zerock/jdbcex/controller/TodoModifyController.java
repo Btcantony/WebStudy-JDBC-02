@@ -1,6 +1,7 @@
 package org.zerock.jdbcex.controller;
 
 import lombok.extern.log4j.Log4j2;
+import org.zerock.jdbcex.HelloServlet;
 import org.zerock.jdbcex.dto.TodoDTO;
 import org.zerock.jdbcex.service.TodoService;
 
@@ -15,11 +16,12 @@ import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "todoModifyController", value = "/todo/modify")
 @Log4j2
-public class TodoModifyController extends HttpServlet {
+public class TodoModifyController  extends HttpServlet {
 
     private TodoService todoService = TodoService.INSTANCE;
     private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    // 2-4 (4.수정) GET 방식으로 DTO를 보는것과 동일
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -36,6 +38,7 @@ public class TodoModifyController extends HttpServlet {
     }
 
 
+    // 2-6 (4.수정) title, finished등을 이용해 TodoDTO 구성
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -58,5 +61,6 @@ public class TodoModifyController extends HttpServlet {
         resp.sendRedirect("/todo/list");
 
     }
+
 
 }

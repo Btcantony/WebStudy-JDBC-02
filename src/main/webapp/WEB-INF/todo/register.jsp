@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sexytony
-  Date: 2023/05/02
-  Time: 3:18 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
+
+// 2-5 (1.등록) form 태그 내에 title과 dueDate를 POST 방식으로 전송
 <form action="/todo/register" method="post">
     <div>
         <input type="text" name="title" placeholder="INSERT TITLE">

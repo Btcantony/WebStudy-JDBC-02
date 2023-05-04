@@ -11,21 +11,19 @@
   <title>Todo Read</title>
 </head>
 <body>
-<div>
-  <input type="text" name="tno" value="${dto.tno}" readonly>
-</div>
-<div>
-  <input type="text" name="title" value="${dto.title}" readonly>
-</div>
-<div>
-  <input type="date" name="dueDate" value="${dto.dueDate}">
-</div>
-<div>
-  <input type="checkbox" name="finished" ${dto.finished ? "checked": ""} readonly >
-</div>
-<div>
-  <a href="/todo/modify?tno=${dto.tno}">Modify/Remove</a>
-  <a href="/todo/list">List</a>
-</div>
+// 2-5 (3.조회) dto라는 이름으로 TodoDTO담아주고, "/todo/read?tno=1"과 같은 형태로 받음
+  <div>
+      <input type="text" name="tno" value="${dto.tno}" readonly>
+  </div>
+      <input type="text" name="title" value="${dto.title}" readonly>
+  <div>
+      <input type="date" name="dueDate" value="${dto.dueDate}">
+  </div>
+      <input type="checkbox" name="finished" ${dto.finished ? "checked" : ""} readonly>
+  <div>
+      <a href="/todo/modify?tno=${dto.tno}">Modify/Remove</a>
+      <a href="/todo/list">List</a>
+  </div>
+
 </body>
 </html>

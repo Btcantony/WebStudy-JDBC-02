@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: sexytony
-  Date: 2023/05/02
-  Time: 3:05 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -16,10 +9,13 @@
 <body>
 <h1>Todo List</h1>
 
+// 2-5 (2.목록) 컨트롤러에서 쏴준 dtoList받음
 <ul>
     <c:forEach items="${dtoList}" var="dto">
+
+        // 2-6 (3.조회) 목록페이지 게시물 링크 추가
         <li>
-            <span><a href="/todo/read?tno=${dto.tno}">${dto.tno}</a></span>
+            <span><a href="/todo/read?tno=${dto.tno}">${dto.tno}</a> </span>
             <span>${dto.title}</span>
             <span>${dto.dueDate}</span>
             <span>${dto.finished? "DONE": "NOT YET"}</span>

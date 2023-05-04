@@ -1,4 +1,4 @@
-package org.zerock.service;
+package org.zerock.dao;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 @Log4j2
 public class TodoServiceTests {
+
     private TodoService todoService;
 
     @BeforeEach
@@ -17,15 +18,16 @@ public class TodoServiceTests {
         todoService = TodoService.INSTANCE;
     }
 
+    // 2-4 register테스트 (TodoDTO받아서 TodoVO로 반환)
     @Test
-    public void testRegister() throws Exception {
+    public void testRegister()throws Exception {
 
         TodoDTO todoDTO = TodoDTO.builder()
-                .title("JDBC Test Title")
+                .title("JDBC Review Test Title")
                 .dueDate(LocalDate.now())
                 .build();
 
-        log.info("---------------------------------"); //log4j2
+        log.info("---------------------------------------------"); //테스트 코드의 Log4j2설정 확인
         log.info(todoDTO);
 
         todoService.register(todoDTO);

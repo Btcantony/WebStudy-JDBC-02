@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+// 2-1 @Data를 이용해 getter/setter생성
 @Builder
 @Data
 @NoArgsConstructor

@@ -23,10 +23,11 @@ public class TodoRegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        log.info("/todo/register GET.......");
-        req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req,resp);
+        log.info("/todo/register.jsp");
+        req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
     }
 
+    // 2-4 (1.등록) TodoDTO JSP로 전달
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -37,14 +38,13 @@ public class TodoRegisterController extends HttpServlet {
 
         log.info("/todo/register POST...");
         log.info(todoDTO);
+
         try {
             todoService.register(todoDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         resp.sendRedirect("/todo/list");
     }
-
-
-
 }

@@ -12,6 +12,8 @@
 </head>
 <body>
 
+// 2-5 (4.수정) 2개의 Form 태그를 이용해 수정/삭제 처리
+
 <form id="form1" action="/todo/modify" method="post">
     <div>
         <input type="text" name="tno" value="${dto.tno}" readonly>

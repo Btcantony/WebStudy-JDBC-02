@@ -1,5 +1,6 @@
 package org.zerock.jdbcex.controller;
 
+
 import lombok.extern.log4j.Log4j2;
 import org.zerock.jdbcex.dto.TodoDTO;
 import org.zerock.jdbcex.service.TodoService;
@@ -18,18 +19,21 @@ public class TodoListController extends HttpServlet {
 
     private TodoService todoService = TodoService.INSTANCE;
 
+    // 2-4 (2.목록) TodoService객체가 반환하는 데이터 저장, JSP 전달
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        log.info("todo list.............");
+        log.info("todo list...................");
 
         try {
-            List<TodoDTO> dtoList = todoService.listAll();
+            List<TodoDTO> dtoList = TodoService.INSTANCE.listAll();
             req.setAttribute("dtoList", dtoList);
-            req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new ServletException("list error");
         }
     }
+
+
 }

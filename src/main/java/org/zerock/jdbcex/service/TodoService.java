@@ -23,48 +23,56 @@ public enum TodoService {
         modelMapper = MapperUtil.INSTANCE.get();
     }
 
-    public void register(TodoDTO todoDTO) throws Exception{
-    // 파라미터로 TodoDTO를 받아서 TOdoVO로 변환하고,이를 저장
+    // 2-3 (1.등록) TodoDTO를 파라미터로 받아 TodoVO로 변환
+    public void register (TodoDTO todoDTO) throws Exception {
 
+        // modelMapper를 이용해 객체 복사
         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
 
-//        System.out.println("todoVO: " + todoVO);
+        // System.out.println("todoVO: " + todoVO);
         log.info(todoVO);
 
-        dao.insert(todoVO); //int를 변환하므로 이를 이용해서 예외처리 가능
+        dao.insert(todoVO);
     }
 
-    public List<TodoDTO> listAll()throws Exception {
+    // 2-3 (2.목록) 등록된 TodoVO목록을 TodoDTO로 변환
+    public List<TodoDTO> listAll() throws Exception {
 
         List<TodoVO> voList = dao.selectAll();
 
-        log.info("voList.................");
+        log.info("voList...............");
         log.info(voList);
 
         List<TodoDTO> dtoList = voList.stream()
-                .map(vo -> modelMapper.map(vo,TodoDTO.class))
+                .map(vo -> modelMapper.map(vo, TodoDTO.class))
                 .collect(Collectors.toList());
 
         return dtoList;
     }
 
-    public TodoDTO get(Long tno)throws Exception {
+    // 2-3 (3.조회) 등록된 TodoVO객체를 가져오고, ModelMapper를 통해 TodoDTO로 반환
+    public TodoDTO get(Long tno) throws Exception {
 
-        log.info("tno: " + tno);
+        log.info("tno : " + tno);
+
         TodoVO todoVO = dao.selectOne(tno);
+
         TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
+
         return todoDTO;
     }
 
-    public void remove(Long tno)throws Exception {
+    public void remove(Long tno) throws Exception {
 
-        log.info("tno: " + tno);
+        log.info("tno :" + tno);
         dao.deleteOne(tno);
     }
 
-    public void modify(TodoDTO todoDTO)throws Exception {
 
-        log.info("todoDTO: " + todoDTO );
+    // 2-3 (4.수정) 등록처럼 TodoDTO를 파라미터로 받아, TodoVO를 반환
+    public void modify(TodoDTO todoDTO) throws Exception {
+
+        log.info("todoDTO : " + todoDTO);
 
         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
 
